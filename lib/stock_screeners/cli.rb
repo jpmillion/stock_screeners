@@ -1,5 +1,5 @@
-require_relative '../lib/scraper.rb'
-
+require_relative './scraper.rb'
+require 'nokogiri'
 
 class StockScreeners::CLI
   
@@ -11,12 +11,13 @@ class StockScreeners::CLI
   end
   
   def create_screens
-    @screens_array = Scraper.new.scrape_screeners_page(BASE_URL)
-    
+    #@screens_array = 
+    StockScreeners::Scraper.scrape_screeners_page(BASE_URL)
+    #@screens_array.slice(1, 9)
   end
   
   def display_screens
-    screens = @screens_array[1:9]
+    screens = create_screens
     screens.each {|screen| puts screen}
   end
 end
