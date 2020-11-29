@@ -1,3 +1,4 @@
 #!/usr/bin/env ruby
+require_relative "../lib/enviroment"
 
 StockScreeners::CLI.new.call
