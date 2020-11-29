@@ -1,0 +1,3 @@
+#!/usr/bin/env ruby
+
+StockScreeners::CLI.new.call
