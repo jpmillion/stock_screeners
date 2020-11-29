@@ -20,7 +20,7 @@ class StockScreeners::CLI
     screens.each_with_index {|screen, i| puts "Enter #{i+1} to select #{screen}"}
   end
   
-  def select_screen
+  def display_selected_screen(screen)
     StockScreeners::Scaper.scrape_selected_screen_page(BASE_URL + screen.url)
     
   end
