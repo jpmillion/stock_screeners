@@ -8,6 +8,11 @@ class StockScreeners::CLI
   def call
     puts 'Welcome, please select a stock screen.'
     display_screens
+    user_input = gets.strip.to_i
+    until user_input.between?(1..9) do
+      puts "Invalid Entry, please select again."
+      user_input = gets.strip.to_i
+    end
   end
   
   def create_screens
@@ -16,7 +21,7 @@ class StockScreeners::CLI
   end
   
   def display_screens
-    screens = create_screens
+    screens = StockScreeners::Scraper.scrape_screeners_page(BASE_URL)
     screens.each_with_index {|screen, i| puts "Enter #{i+1} to select #{screen}"}
   end
   

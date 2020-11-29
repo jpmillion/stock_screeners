@@ -8,8 +8,9 @@ class StockScreeners::Scraper
     doc = Nokogiri::HTML(open(screeners_url))
     screen_links = doc.css("#predefined-screeners a[href]").map {|e| e['href']}
     screen_names = doc.css("#predefined-screeners a[href]").map {|e| e.text}
-    screen_links.slice(1, 9)
-    screen_names.slice(1, 9)
+    links = screen_links.slice(1, 9)
+    names = screen_names.slice(1, 9)
+    hash = {screen link: links, screen name: names}
   end
   
   def self.scrape_selected_screen_page(screen_url)
