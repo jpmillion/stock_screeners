@@ -10,15 +10,16 @@ class StockScreeners::Scraper
     screen_names = doc.css("#predefined-screeners a[href]").map {|e| e.text}
     links = screen_links.slice(1, 9)
     names = screen_names.slice(1, 9)
-    hash = {screen link: links, screen name: names}
+    hash = {screen_link: links, screen_name: names}
   end
   
   def self.scrape_selected_screen_page(screen_url)
     doc = Nokogiri::HTML(open(screen_url))
-    table = growth.css("#fin-scr-res-table tbody")
-    table_head = growth.css("#fin-scr-res-table thead")
+    table = doc.css("#fin-scr-res-table tbody")
+    table_head = doc.css("#fin-scr-res-table thead")
     table_head_data_array = table_head.css("th").map{|e| e.text}
     table_rows = table.css("tr")
     table_row_data_array = table_rows.map {|r| r.css("td").map {|d| d.text}}
+    hash = {headers: table_head_data_array, rows: table_row_data_array}
   end
 end
