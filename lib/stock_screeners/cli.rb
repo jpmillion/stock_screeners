@@ -45,6 +45,8 @@ class StockScreeners::CLI
   end
   
   def display_summary(user_input)
-    summary = stocks[:quotes][user_input]
+    summary_url = stocks[:quotes][user_input]
+    summary = StockScreeners::Scraper.scrape_selected_stock_summary(BASE_URL + summary_url)
+    summary.each {|row| puts row.join(': ')}
   end
 end
