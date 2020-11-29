@@ -11,13 +11,17 @@ class StockScreeners::CLI
   end
   
   def create_screens
-    #@screens_array = 
-    StockScreeners::Scraper.scrape_screeners_page(BASE_URL)
-    #@screens_array.slice(1, 9)
+    screens = StockScreeners::Scraper.scrape_screeners_page(BASE_URL)
+    screens.each {|screen| StockScreeners::Screen.new}
   end
   
   def display_screens
     screens = create_screens
-    screens.each {|screen| puts screen}
+    screens.each_with_index {|screen, i| puts "Enter #{i+1} to select #{screen}"}
+  end
+  
+  def select_screen
+    StockScreeners::Scaper.scrape_selected_screen_page(BASE_URL + screen.url)
+    
   end
 end
