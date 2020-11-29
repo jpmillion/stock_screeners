@@ -19,7 +19,13 @@ class StockScreeners::Scraper
     table_head = doc.css("#fin-scr-res-table thead")
     table_head_data_array = table_head.css("th").map{|e| e.text}
     table_rows = table.css("tr")
+    quotes_array = table_rows.css("a[href]").map {|e| e['href']}
     table_row_data_array = table_rows.map {|r| r.css("td").map {|d| d.text}}
-    hash = {headers: table_head_data_array, rows: table_row_data_array}
+    hash = {headers: table_head_data_array, rows: table_row_data_array quotes: quotes_array}
+  end
+  
+  def self.scrape_selected_stock_summary(summary_url)
+    doc = Nokogiri::HTML(open(summary_url))
+    
   end
 end
