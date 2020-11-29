@@ -1,5 +1,5 @@
-require "stock_screeners/version"
-require "stock_screeners/cli"
+require_relative "stock_screeners/version"
+require_relative "stock_screeners/cli"
 module StockScreeners
   class Error < StandardError; end
   # Your code goes here...
