@@ -1,5 +1,9 @@
-class StockScreeners::CLI 
+class StockScreeners::CLI
+  
+  BASE_URL = "https://finance.yahoo.com/screener"
+  
   def call
-    puts 'Welcome, select a stock screen.'
+    puts 'Welcome, please select a stock screen.'
+    
   end
 end
