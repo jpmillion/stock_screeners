@@ -14,11 +14,16 @@ class StockScreeners::CLI
     get_and_display_screens
     display_selected_screen(get_input)
     display_summary(get_input)
+    back_to_selected_screen if start_over?
     display_screen if start_over?
   end
   
   def display_selected_screen(user_input)
     self.stocks = screens[user_input].selected_screen(BASE_URL + screens[user_input].link)
+  end
+  
+  def back_to_selected_screen
+    stocks.each_with_index {|stock, i| puts "Enter #{i+1} to view a summary of #{stock.name}"}
   end
   
   def get_and_display_screens
@@ -36,6 +41,7 @@ class StockScreeners::CLI
   end
   
   def get_input 
+    puts "Enter your selection below: "
     user_input = gets.strip.to_i
     until user_input.between?(1, 9) do
       puts "Invalid entry, please select again."
@@ -46,8 +52,8 @@ class StockScreeners::CLI
   
   def start_over?
     puts ''
-    puts "To go back to stock screens enter 'y'"
-    user_input = gets.strip.downcase
+    puts "To go back enter 'y'"
+    puts "Enter your selection here: #{user_input = gets.strip.downcase}"
     true if user_input == 'y'
   end
 end
