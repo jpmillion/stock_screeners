@@ -1,5 +1,11 @@
 class StockScreeners::Screen 
   
+  attr_accessor :screen_link, :screen_name
+  
+  def initialize(url)
+    screens = StockScreeners::Scraper.scrape_screeners_page(url)
+    screens.each {|k, v| v.each {|v| send("#{k}=", v)}}
+  end
 
   
   def self.selected_screen(url)
