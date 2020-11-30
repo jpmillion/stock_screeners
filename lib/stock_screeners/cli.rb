@@ -14,7 +14,7 @@ class StockScreeners::CLI
     display_screens
     display_selected_screen(input)
     display_summary(input)
-    start_over
+    call if start_over?
   end
   
   def display_selected_screen(user_input)
@@ -41,10 +41,10 @@ class StockScreeners::CLI
     user_input - 1
   end
   
-  def start_over
+  def start_over?
     puts ''
     puts "enter 'y' to select a different screen or enter 'q' to exit"
     user_input = gets.strip.downcase
-    call if user_input == 'y'
+    true if user_input == 'y'
   end
 end
