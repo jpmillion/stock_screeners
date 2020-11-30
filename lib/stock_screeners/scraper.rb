@@ -12,10 +12,10 @@ class StockScreeners::Scraper
   
   def self.scrape_selected_screen_page(screen_url)
     doc = Nokogiri::HTML(open(screen_url))
-    name = doc.css("#fin-scr-res-table tbody tr").map {|r| r.css("td").map {|d| d.text}}.map {|row| row[1]}
-    quotes_array = doc.css("#fin-scr-res-table tbody tr").css("a[href]").map {|e| e['href']}
-    names = name.map {|name| {name: name}}
-    links = quotes_array.map {|quote| {link: quote}}
+    names = doc.css("#fin-scr-res-table tbody tr").map {|r| r.css("td").map {|d| d.text}}.map {|row| row[1]}.map {|name| {name: name}}
+    links = doc.css("#fin-scr-res-table tbody tr").css("a[href]").map {|e| e['href']}.map {|quote| {link: quote}}
+    #names = name.map {|name| {name: name}}
+    #links = quotes_array.map {|quote| {link: quote}}
     stock_hashes = []
     i = 1 
     while i < 10 do
