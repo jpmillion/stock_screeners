@@ -12,7 +12,7 @@ class StockScreeners::CLI
   def call
     puts 'Welcome, please select a stock screen.'
     display_screens
-    select_screen
+    user_input = select_screen
     #user_input = gets.strip.to_i
     #until user_input.between?(1, 9) do
      # puts "Invalid entry, please select again."
@@ -48,5 +48,6 @@ class StockScreeners::CLI
       puts "Invalid entry, please select again."
       user_input = gets.strip.to_i
     end
+    user_input
   end
 end
