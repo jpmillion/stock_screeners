@@ -19,18 +19,18 @@ class StockScreeners::Screen
     @@all
   end
   
-  def self.selected_screen(url)
-    stocks = StockScreeners::Scraper.scrape_selected_screen_page(url)
+  #def self.selected_screen(url)
+   # stocks = StockScreeners::Scraper.scrape_selected_screen_page(url)
     #symbol = stocks[:headers][0]
     #name = stocks[:headers][1]
     #price = stocks[:headers][2]
-    rows = stocks[:rows].slice(1, 9)
-    rows.each_with_index {|row, i| puts "Enter #{i+1} to view a summary of #{row[1]}"}
-    stocks
-  end
-  
-  #def selected_screen(url)
-   # self.stocks = StockScreeners::Stock.create_stocks(url)
-   # stocks.each_with_index {|stock, i| puts "Enter #{i+1} to view a summary of #{stock.name}}"
+    #rows = stocks[:rows].slice(1, 9)
+    #rows.each_with_index {|row, i| puts "Enter #{i+1} to view a summary of #{row[1]}"}
+    #stocks
   #end
+  
+  def selected_screen(url)
+    self.stocks = StockScreeners::Stock.create_stocks(url)
+    stocks.each_with_index {|stock, i| puts "Enter #{i+1} to view a summary of #{stock.name}"}
+  end
 end

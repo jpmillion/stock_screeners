@@ -18,17 +18,17 @@ class StockScreeners::CLI
   end
   
   def display_selected_screen(user_input)
-    screen_url = screens[user_input][:link]
-    self.stocks = StockScreeners::Screen.selected_screen(BASE_URL + screen_url)
+    #screen_url = screens[user_input][:link]
+    #self.stocks = StockScreeners::Screen.selected_screen(BASE_URL + screen_url)
     #self.stocks = StockScreeners::Stock.create_stocks(BASE_URL + screens[user_input].link)
-    ##self.stocks = screens[user_input].selected_screen(BASE_URL + screens[user_input].link)
+    self.stocks = screens[user_input].selected_screen(BASE_URL + screens[user_input].link)
   end
   
   def display_screens
-    self.screens = StockScreeners::Scraper.scrape_screeners_page(SCREENER_URL)
-    screens.each_with_index {|screen, i| puts "Enter #{i+1} to select #{screen[:name]}"}
-    #self.screens = StockScreeners::Screen.create_screens(SCREENER_URL)
-    #screens.each_with_index {|screen, i| puts "Enter #{i+1} to select #{screen.name}"}
+    #self.screens = StockScreeners::Scraper.scrape_screeners_page(SCREENER_URL)
+    #screens.each_with_index {|screen, i| puts "Enter #{i+1} to select #{screen[:name]}"}
+    self.screens = StockScreeners::Screen.create_screens(SCREENER_URL)
+    screens.each_with_index {|screen, i| puts "Enter #{i+1} to select #{screen.name}"}
   end
   
   def display_summary(user_input)
