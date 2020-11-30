@@ -2,8 +2,11 @@ class StockScreeners::Screen
   
   attr_accessor :link, :name
   
+  #@@all = []
+  
   #def initialize(screen_hash)
    # screen_hash.each {|k, v| send("#{k}=", v)}
+   # @@all << self
   #end
   
   def self.selected_screen(url)
