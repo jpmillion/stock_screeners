@@ -9,6 +9,11 @@ class StockScreeners::Screen
    # @@all << self
   #end
   
+  #def self.create_from_collection(url)
+   # screens = StockScreeners::Scraper.scrape_screeners_page(SCREENER_URL)
+    #screens.each {|screen| StockScreeners::Screen.new(screen)}
+  #end
+  
   def self.selected_screen(url)
     stocks = StockScreeners::Scraper.scrape_selected_screen_page(url)
     symbol = stocks[:headers][0]
