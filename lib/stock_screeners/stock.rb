@@ -5,13 +5,14 @@ class StockScreeners::Stock
   #@@all = []
   
   #def initialize(stock)
-    
+    stock
   #end
   
   #def self.create_stocks(url)
    # stocks = StockScreeners::Scraper.scrape_selected_screen_page(url)
+    #stocks = stocks.slice(1, 9)
     #stocks.each {|stock| new(stock)}
-    #all << self
+    #all
   #end
   
   #def self.all
