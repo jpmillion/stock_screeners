@@ -1,7 +1,7 @@
 class StockScreeners::Screen 
   
   attr_accessor :link, :name, :stocks
-  
+  #@stocks = []
   @@all = []
   
   def initialize(screen_hash)

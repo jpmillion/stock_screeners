@@ -19,7 +19,15 @@ class StockScreeners::Scraper
     name = doc.css("#fin-scr-res-table tbody tr").map {|r| r.css("td").map {|d| d.text}}.map {|row| row[1]}
     quotes_array = doc.css("#fin-scr-res-table tbody tr").css("a[href]").map {|e| e['href']}
     #{rows: table_row_data_array, quotes: quotes_array} # xx headers: table_head_data_array,
-    
+    names = name.map {|name| {name: name}}
+    links = quotes_array.map {|quote| {link: quote}}
+    stock_hashes = []
+    i = 1 
+    while i < 10 do
+      stock_hashes << names[i].merge(links[i])
+      i += 1
+    end
+    stock_hashes
   end
   
   def self.scrape_selected_stock_summary(summary_url)
