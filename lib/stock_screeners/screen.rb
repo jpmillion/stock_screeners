@@ -9,9 +9,10 @@ class StockScreeners::Screen
    # @@all << self
   #end
   
-  #def self.create_from_collection(url)
+  #def self.create_screens(url)
    # screens = StockScreeners::Scraper.scrape_screeners_page(SCREENER_URL)
     #screens.each {|screen| StockScreeners::Screen.new(screen)}
+    #all
   #end
   
   #def self.all

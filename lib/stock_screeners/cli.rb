@@ -25,6 +25,7 @@ class StockScreeners::CLI
   def display_screens
     self.screens = StockScreeners::Scraper.scrape_screeners_page(SCREENER_URL)
     screens.each_with_index {|screen, i| puts "Enter #{i+1} to select #{screen[:name]}"}
+    #self.screens = StockScreeners::Screen.create_screens(SCREENER_URL)
   end
   
   def display_summary(user_input)
