@@ -12,11 +12,12 @@ class StockScreeners::CLI
   def call
     puts 'Welcome, please select a stock screen.'
     display_screens
-    user_input = gets.strip.to_i
-    until user_input.between?(1, 9) do
-      puts "Invalid entry, please select again."
-      user_input = gets.strip.to_i
-    end
+    select_screen
+    #user_input = gets.strip.to_i
+    #until user_input.between?(1, 9) do
+     # puts "Invalid entry, please select again."
+      #user_input = gets.strip.to_i
+    #end
     display_selected_screen(user_input-1)
     user_input = gets.strip.to_i
     until user_input.between?(1, 9) do
@@ -39,5 +40,13 @@ class StockScreeners::CLI
   def display_summary(user_input)
     summary_url = stocks[:quotes][user_input]
     StockScreeners::Stock.display_summary(BASE_URL + summary_url)
+  end
+  
+  def select_screen 
+    user_input = gets.strip.to_i
+    until user_input.between?(1, 9) do
+      puts "Invalid entry, please select again."
+      user_input = gets.strip.to_i
+    end
   end
 end
