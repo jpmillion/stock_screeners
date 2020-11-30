@@ -1,6 +1,6 @@
 class StockScreeners::Stock 
   
-  #attr_accessor :name
+  #attr_accessor :name, :summary
   
   #@@all = []
   
@@ -23,5 +23,9 @@ class StockScreeners::Stock
     summary = StockScreeners::Scraper.scrape_selected_stock_summary(url)
     summary.each {|row| puts row.join(': ')}
   end
+  
+  #def display_summary
+   # self.summary.each {|row| puts row.join(': ')
+  #end
   
 end
