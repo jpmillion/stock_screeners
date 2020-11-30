@@ -1,11 +1,17 @@
 class StockScreeners::Stock 
   
-  #@@all
+  #attr_accessor :name
+  
+  #@@all = []
+  
+  #def initialize(stock)
+    
+  #end
   
   #def self.create_stocks(url)
    # stocks = StockScreeners::Scraper.scrape_selected_screen_page(url)
     #stocks.each {|stock| new(stock)}
-    #all
+    #all << self
   #end
   
   #def self.all
