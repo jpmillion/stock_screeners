@@ -14,6 +14,10 @@ class StockScreeners::Screen
     #screens.each {|screen| StockScreeners::Screen.new(screen)}
   #end
   
+  #def self.all
+   # @@all
+  #end
+  
   def self.selected_screen(url)
     stocks = StockScreeners::Scraper.scrape_selected_screen_page(url)
     symbol = stocks[:headers][0]
