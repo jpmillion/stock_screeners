@@ -1,5 +1,6 @@
 require_relative './scraper.rb'
 require 'nokogiri'
+require 'pry'
 
 class StockScreeners::CLI
   
@@ -26,14 +27,13 @@ class StockScreeners::CLI
   end
   
   def display_selected_screen(user_input)
-    screen_url = screens[:screen_link][user_input]
+    screen_url = screens[user_input][:link]
     self.stocks = StockScreeners::Screen.selected_screen(BASE_URL + screen_url)
   end
   
   def display_screens
-    #self.screens = StockScreeners::Scraper.scrape_screeners_page(SCREENER_URL)
-    #screens[:screen_name].each_with_index {|screen, i| puts "Enter #{i+1} to select #{screen}"}
-    self.screens = StockScreeners::Screen.new(SCREENER_URL)
+    self.screens = StockScreeners::Scraper.scrape_screeners_page(SCREENER_URL)
+    screens.each_with_index {|screen, i| puts "Enter #{i+1} to select #{screen[:name]}"}
   end
   
   def display_summary(user_input)

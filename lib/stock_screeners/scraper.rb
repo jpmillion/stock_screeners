@@ -1,16 +1,11 @@
 require 'open-uri'
 require 'nokogiri'
-#require 'pry'
+require 'pry'
 
 class StockScreeners::Scraper
   
   def self.scrape_screeners_page(screeners_url)
     doc = Nokogiri::HTML(open(screeners_url))
-    #screen_links = doc.css("#predefined-screeners a[href]").map {|e| e['href']}
-    #screen_names = doc.css("#predefined-screeners a[href]").map {|e| e.text}
-    #links = screen_links.slice(1, 9)
-    #names = screen_names.slice(1, 9)
-    #hash = {screen_link: links, screen_name: names}
     hashes = doc.css("#predefined-screeners a[href]").map {|e| {name: e.text, link: e['href']}}
     hashes.slice(1, 9)
   end
