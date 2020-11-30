@@ -20,13 +20,14 @@ class StockScreeners::Stock
     @@all
   end
   
-  def self.display_summary(url)
-    summary = StockScreeners::Scraper.scrape_selected_stock_summary(url)
-    summary.each {|row| puts row.join(': ')}
-  end
-  
-  #def display_summary
-   # self.summary.each {|row| puts row.join(': ')
+  #def self.display_summary(url)
+   # summary = StockScreeners::Scraper.scrape_selected_stock_summary(url)
+    #summary.each {|row| puts row.join(': ')}
   #end
+  
+  def display_summary(url)
+    self.summary =StockScreeners::Scraper.scrape_selected_stock_summary(url)
+    self.summary.each {|row| puts row.join(': ')}
+  end
   
 end
