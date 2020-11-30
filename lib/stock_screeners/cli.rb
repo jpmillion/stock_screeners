@@ -20,6 +20,7 @@ class StockScreeners::CLI
   def display_selected_screen(user_input)
     screen_url = screens[user_input][:link]
     self.stocks = StockScreeners::Screen.selected_screen(BASE_URL + screen_url)
+    #self.stocks = StockScreeners::Screen.selected_screen(BASE_URL + screens[user_input].link)
   end
   
   def display_screens

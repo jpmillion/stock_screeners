@@ -11,7 +11,7 @@ class StockScreeners::Screen
   
   def self.create_screens(url)
     screens = StockScreeners::Scraper.scrape_screeners_page(url)
-    screens.each {|screen| StockScreeners::Screen.new(screen)}
+    screens.each {|screen| new(screen)}
     all
   end
   
@@ -27,6 +27,7 @@ class StockScreeners::Screen
     rows = stocks[:rows].slice(1, 9)
     rows.each_with_index {|row, i| puts "Enter #{i+1} to view a summary of #{row[1]}"}
     stocks
+    
   end
   
 end
