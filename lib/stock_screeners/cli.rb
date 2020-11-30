@@ -34,6 +34,7 @@ class StockScreeners::CLI
   def display_summary(user_input)
     summary_url = stocks[:quotes][user_input]
     StockScreeners::Stock.display_summary(BASE_URL + summary_url)
+    #self.stocks[user_input].display_summary
   end
   
   def input 
