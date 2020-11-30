@@ -56,27 +56,19 @@ class StockScreeners::CLI
     puts "To go back enter 'back' or to restart enter 'restart"
     puts "Enter your selection below:"
     input = gets.strip.downcase
-    #while input == 'back' || input == 'restart' do
-      #if input == 'back'
+  
     case input
       
     when 'back'
         back_to_selected_screen
         go_back_or_restart
-      #else
+        
     when 'restart'
         display_screen
         self.stocks.clear
         display_selected_screen(get_input)
         display_summary(get_input)
         go_back_or_restart
-      #end
     end
-      #go_back_or_restart
-      #puts ''
-      #puts "To go back enter 'back' or to restart enter 'restart' or to quit enter'q'"
-      #puts "Enter your selection below:"
-      #input = gets.strip.downcase
-    #end
   end
 end
