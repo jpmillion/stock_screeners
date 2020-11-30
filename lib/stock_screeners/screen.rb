@@ -4,7 +4,7 @@ class StockScreeners::Screen
   
   def initialize(url)
     screens = StockScreeners::Scraper.scrape_screeners_page(url)
-    screens.each {|k, v| v.each {|v| send("#{k}=", v)}}
+    screens.each
   end
 
   

@@ -11,6 +11,9 @@ class StockScreeners::Scraper
     links = screen_links.slice(1, 9)
     names = screen_names.slice(1, 9)
     hash = {screen_link: links, screen_name: names}
+    array_of_arrays = [names, links]
+    array_of_hashes = []
+    array_of_arrays.each {|a| a[0].each {|e| {screen_name: e}}}
   end
   
   def self.scrape_selected_screen_page(screen_url)
