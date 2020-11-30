@@ -4,7 +4,7 @@ require 'pry'
 
 class StockScreeners::CLI
   
-  attr_accessor :screens, :stocks
+  attr_accessor :screens, :stocks, :first_display
   
   SCREENER_URL = "https://finance.yahoo.com/screener"
   BASE_URL = "https://finance.yahoo.com"
@@ -14,7 +14,7 @@ class StockScreeners::CLI
     display_screens
     display_selected_screen(input)
     display_summary(input)
-    call if start_over?
+    start_over?
   end
   
   def display_selected_screen(user_input)
@@ -41,8 +41,8 @@ class StockScreeners::CLI
   
   def start_over?
     puts ''
-    puts "enter 'y' to select a different screen or enter 'q' to exit"
+    puts "To go back to stock screens enter 'y'"
     user_input = gets.strip.downcase
-    true if user_input == 'y'
+    screens.each_with_index {|screen, i| puts "Enter #{i+1} to select #{screen.name}"} if user_input == 'y'
   end
 end
