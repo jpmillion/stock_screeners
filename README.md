@@ -1,10 +1,6 @@
 # StockScreeners
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/stock_screeners`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
-
-It will display stock screens to choose from and display the stocks with in those screens.  User will have the option to choose a stock to get a summary of that stock.
+When the program begins it will display multiple stock screens.  The user will then be asked to select a screen.  The screen selected will display the stocks that match the critera of the selected screen.  The user will then be asked to select a stock.  A summary of the stock selected will be displayed.  The user will then have the option to go back to the previous screen or restart the program or exit the program.
 
 ## Installation
 
