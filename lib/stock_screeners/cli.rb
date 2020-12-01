@@ -1,10 +1,7 @@
-require_relative './scraper.rb'
-require 'nokogiri'
-require 'pry'
 
 class StockScreeners::CLI
   
-  attr_accessor :screens, :stocks, :first_display
+  attr_accessor :screens, :first_display,:stocks
   
   SCREENER_URL = "https://finance.yahoo.com/screener"
   BASE_URL = "https://finance.yahoo.com"
