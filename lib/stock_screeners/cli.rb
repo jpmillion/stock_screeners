@@ -53,7 +53,7 @@ class StockScreeners::CLI
   
   def go_back_or_restart
     puts ''
-    puts "To go back enter 'back' or to restart enter 'restart"
+    puts "To go back enter 'back' or to restart enter 'restart'"
     puts "Enter your selection below:"
     input = gets.strip.downcase
   
