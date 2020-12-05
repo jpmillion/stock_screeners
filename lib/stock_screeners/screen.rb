@@ -20,7 +20,6 @@ class StockScreeners::Screen
   end
   
   def selected_screen(url)
-    self.stocks = StockScreeners::Stock.create_stocks(url)
-    stocks.each_with_index {|stock, i| puts "Enter #{i+1} to view a summary of #{stock.name}"}
+    self.stocks = StockScreeners::Stock.create_stocks(url) if !self.stocks
   end
 end

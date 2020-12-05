@@ -4,7 +4,7 @@ class StockScreeners::Scraper
   def self.scrape_screeners_page(screeners_url)
     doc = Nokogiri::HTML(open(screeners_url))
     hashes = doc.css("#predefined-screeners a[href]").map {|e| {name: e.text, link: e['href']}}
-    hashes.slice(1, 9)
+    hashes.slice(1, hashes.count)
   end
   
   def self.scrape_selected_screen_page(screen_url)
@@ -13,7 +13,7 @@ class StockScreeners::Scraper
     links = doc.css("#fin-scr-res-table tbody tr").css("a[href]").map {|e| e['href']}.map {|quote| {link: quote}}
     stock_hashes = []
     i = 1 
-    while i < 10 do
+    while i < names.count do
       stock_hashes << names[i].merge(links[i])
       i += 1
     end

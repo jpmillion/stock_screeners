@@ -1,51 +1,68 @@
 
 class StockScreeners::CLI
   
-  attr_accessor :screens, :first_display,:stocks
-  
   SCREENER_URL = "https://finance.yahoo.com/screener"
   BASE_URL = "https://finance.yahoo.com"
   
   def call
     puts 'Welcome, please select a stock screen.'
-    get_and_display_screens
-    display_selected_screen(get_input)
-    display_summary(get_input)
+    get_screens
+    puts_screens
+    get_selected_screen
+    puts_selected_screen
+    get_stock_summary
+    puts_stock_summary
     go_back_or_restart
   end
-  
-  def display_selected_screen(user_input)
-    self.stocks = screens[user_input].selected_screen(BASE_URL + screens[user_input].link)
+
+  def get_screens
+    @screens = StockScreeners::Screen.create_screens(SCREENER_URL) if !@screens
+  end
+
+  def puts_screens 
+    @screens.each_with_index {|screen, i| puts "Enter #{i+1} to select #{screen.name}"}
   end
   
-  def back_to_selected_screen
-    stocks.each_with_index {|stock, i| puts "Enter #{i+1} to view a summary of #{stock.name}"}
-    display_summary(get_input)
+  def get_selected_screen
+    screen = StockScreeners::Screen.all[screen_index]
+    @stocks = screen.selected_screen(BASE_URL + screen.link) 
+  end
+
+  def puts_selected_screen
+    @stocks.each_with_index {|stock, i| puts "Enter #{i+1} to view a summary of #{stock.name}"}
   end
   
-  def get_and_display_screens
-    self.screens = StockScreeners::Screen.create_screens(SCREENER_URL)
-    screens.each_with_index {|screen, i| puts "Enter #{i+1} to select #{screen.name}"}
+  def get_stock_summary
+    stock = @stocks[stock_index]
+    @table_summary = stock.get_summary(BASE_URL + stock.link) if !stock.summary 
+  end
+
+  def puts_stock_summary
+    @table_summary.each {|row| puts row.join(': ')}
   end
   
-  def display_screen 
-    screens.each_with_index {|screen, i| puts "Enter #{i+1} to select #{screen.name}"}
-  end
-  
-  
-  def display_summary(user_input)
-    self.stocks[user_input].display_summary(BASE_URL + stocks[user_input].link)
-  end
-  
-  def get_input
+  def get_selection
     puts ''
     puts "Enter your selection below: "
-    user_input = gets.strip.to_i
-    until user_input.between?(1, 9) do
-      puts "Invalid entry, please select again."
-      user_input = gets.strip.to_i
+    gets.strip.to_i
+  end
+
+  def screen_index
+    selection = get_selection
+    until selection.between?(1, @screens.count) do
+      puts "Invalid entry, try again."
+      selection = get_index
     end
-    user_input - 1
+    selection - 1
+  end
+
+  def stock_index
+    selection = get_selection
+    until selection.between?(1, @stocks.count) do
+      puts "Invalid entry, try again."
+      selection = get_index
+    end
+    selection - 1
   end
   
   def go_back_or_restart
@@ -57,15 +74,13 @@ class StockScreeners::CLI
     case input
       
     when 'back'
-        back_to_selected_screen
+        puts_selected_screen
+        get_stock_summary
+        puts_stock_summary  
         go_back_or_restart
         
     when 'restart'
-        display_screen
-        self.stocks.clear
-        display_selected_screen(get_input)
-        display_summary(get_input)
-        go_back_or_restart
+        call
     end
   end
 end

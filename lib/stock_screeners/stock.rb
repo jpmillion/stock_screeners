@@ -11,17 +11,15 @@ class StockScreeners::Stock
   
   def self.create_stocks(url)
     stocks = StockScreeners::Scraper.scrape_selected_screen_page(url)
-    stocks.each {|stock| new(stock)}
-    all
+    stocks.map {|stock| new(stock)}
   end
   
   def self.all
     @@all
   end
   
-  def display_summary(url)
-    self.summary =StockScreeners::Scraper.scrape_selected_stock_summary(url)
-    self.summary.each {|row| puts row.join(': ')}
+  def get_summary(url)
+    self.summary = StockScreeners::Scraper.scrape_selected_stock_summary(url) if !self.summary
   end
   
 end
